@@ -125,11 +125,13 @@ function publish() {
         }
         for ( i = 0; i < quants.length; i++ ) {
             quants[i].style.width = width + 'px';
-            quants[i].nextElementSibling.style.paddingLeft = width + 5 + 'px';
-            quants[i].nextElementSibling.style.textIndent = -width - 5 + 'px';
+            quants[i].parentElement.style.paddingLeft = width + 5 + 'px';
+            quants[i].parentElement.style.textIndent = -width - 5 + 'px';
+            quants[i].parentElement.innerHTML = quants[i].outerHTML + quants[i].nextElementSibling.innerText;
         }
         document.querySelector('button.publish').remove();
         document.head.querySelector('script').remove();
+        document.head.querySelector('[href="template.css"').remove();
       
         window.print();
     }

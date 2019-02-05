@@ -1,0 +1,167 @@
+body {
+    position: relative;
+}
+[contenteditable]:focus {
+    text-decoration: underline;
+}
+input { display: none }
+
+#addNewIngredient,
+#addNewStep {
+    width: 30px;
+    margin: 0 0 0 50px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, .15);
+    font-weight: bold;
+    color: #8a0f0f;
+    background: rgba(255, 255, 255, .95);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 0px;
+    padding: 0;
+}
+
+ul.ingredients>li>span.quantity {
+    padding-right: 4px;
+}
+
+ul.ingredients>li {
+    padding-left: 0;
+    text-indent: 0;
+    font-size: 0;
+}
+li > span {
+    font-size: 1.15rem;
+    line-height: 20px;
+    display: inline-block;
+    min-width: 15px;
+}
+span[contenteditable=true] {
+    min-width: 15px;
+}
+
+#addImage {
+    width: 35%;
+    min-width: 200px;
+    max-height: 500px;
+    font-size: 0;
+    margin: 0 0 15px 15px;
+    border-radius: 3px;
+    border: 5px ridge #8a0f0f;
+    background: rgba(29, 31, 58, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    float: right;
+    color: white;
+}
+
+#addImage>*{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+#addImage > button.filePicker {
+    cursor: pointer;
+    width: 40px;
+    display: block;
+    height: 40px;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 30px auto 10px auto;
+    background: #8a0f0f;
+    font-size: 20px;
+    line-height: 0px;
+    padding: 0;
+}
+
+#addImage>div {
+    margin-bottom: 30px;
+}
+
+#addImage>img {
+    width: 100%;
+    height: 100%;
+}
+
+#addImage>button.cancel {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 36px;
+    border: 2px solid white;
+    line-height: 0px;
+    background: #8a0f0f;
+    display: none;
+    position: absolute;
+    margin: 10px;
+    cursor: pointer;
+}
+
+button.delete {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    color: #8a0f0f;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+
+#addImage.added > *,
+#addImage.added > button.filePicker {
+    display: none;
+}
+#addImage.added > button.cancel {
+    display: block;
+}
+#addImage.added > img {
+    height: 100%;
+    display: block;
+    border: 0;
+    box-shadow: none;
+}
+
+button.publish {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    background: #8a0f0f;
+    font-family: Eczar;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px;
+    margin-bottom: -10px;
+    border-radius: 3px;
+    border-width: 5px;
+    border-color: #8a0f0f;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+*:focus {
+    outline: 0px solid transparent;
+}
+@media(max-width:550px) {
+    #addImage {
+        display: none
+    }
+}
+@media(min-width:1100px) {
+    button.publish {
+        right: calc((100vw - 1000px)/2);
+    }
+}
