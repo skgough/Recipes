@@ -115,6 +115,7 @@ button.delete {
     color: #8a0f0f;
     text-align: center;
     width: 20px;
+    padding: 0;
     height: 20px;
 }
 
@@ -159,6 +160,19 @@ button.publish {
     #addImage {
         display: none
     }
+    #addNewIngredient,
+    #addNewStep {
+        width: 40px;
+        height: 40px;
+        color: #8a0f0f;
+        font-size: 14px;
+    }
+    button.delete {
+        font-size:20px;
+        line-height:20px;
+        margin-left: 3px;
+    }
+
 }
 @media(min-width:1100px) {
     button.publish {
