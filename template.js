@@ -130,6 +130,7 @@ function publish() {
         }
         document.querySelector('button.publish').remove();
         document.head.querySelector('script').remove();
-        document.head.querySelector('link').remove();
+      
+        window.print();
     }
 }

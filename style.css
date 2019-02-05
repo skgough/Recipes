@@ -1,0 +1,116 @@
+html { font-family: serif }
+body {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 3rem;
+    color: #33334d;
+    background: rgb(255, 234, 217);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 1em 0 0.5em;
+}
+a.home {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+    font-size: 20px;
+}
+img {
+    width: 35%;
+    min-width: 200px;
+    margin: 0 0 15px 15px;
+    background: white;
+    border-radius: 3px;
+    border: 5px ridge #8a0f0f;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    float: right;
+}
+
+div.yield,
+div.time {
+    font-size: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: .25rem;
+    font-style: italic;
+}
+
+ul.ingredients {
+    font-size: 1.15rem;
+    margin: 1rem 0;
+}
+
+ul.ingredients>li {
+    margin: 0.75rem 0;
+    line-height: 1.15;
+}
+
+ul.ingredients>li>span.quantity {
+    font-weight: bold;
+    color: #8a0f0f;
+    display: inline-block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+div.preparation {
+    counter-reset: section;
+    list-style-type: none;
+}
+
+div.preparation>p::before {
+    counter-increment: section;
+    content: counters(section, ".") " ";
+    display: inline-block;
+    position: relative;
+    top: 15px;
+    margin: 0 10px 0 0;
+    color: #8a0f0f;
+    font-weight: bold;
+    font-size: 35px;
+    width: 20px;
+    margin-top: -15px;
+    margin-left: -25px;
+    line-height: 1;
+}
+p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin: 1.5em 0;
+}
+div.preparation>p {
+    padding-left: 30px;
+    text-indent: -5px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media(max-width:550px) {
+    img {
+        display: none
+    }
+}
+
+@media print {
+    html {
+        font-size: 13px
+    }
+    h1 {
+        margin-top: 5px
+    }
+    body {
+        background: transparent
+    }
+}
+@media(min-width:1100px) {
+    a.home {
+        right: calc((100vw - 1015px)/2);
+    }
+}
