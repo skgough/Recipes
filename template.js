@@ -137,6 +137,7 @@ function publish() {
         window.print();
     }
 }
+<<<<<<< HEAD
 function triggerKeyboardEvent(el, keyCode){
     var keyboardEvent = document.createEvent("KeyboardEvent");
     
@@ -163,3 +164,5 @@ function onAndroid() {
     return regex.test(navigator.userAgent)
 }
 var isAndroid = onAndroid();
+=======
+>>>>>>> d6e2a50654db9434d6bc6d582ba9215a99235c61
