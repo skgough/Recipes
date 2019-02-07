@@ -2,7 +2,7 @@ class Editable {
     constructor (element) {
         element.addEventListener( 'blur',this.blurHandler.bind(element) );
         element.addEventListener( 'focus',this.focusHandler.bind(element) );
-        element.addEventListener( 'keydown',this.keydownHandler.bind(element) );
+        element.addEventListener( 'input',this.inputHandler.bind(element) );
         this.element = element;
     }
     focusHandler() {
@@ -21,7 +21,7 @@ class Editable {
         this.classList.remove('cefocused');
         this.classList.remove('ceactive');
     }
-    keydownHandler(e) {
+    inputHandler(e) {
         if ( ! this.edited || this.innerText === '' ) {
             this.classList.remove('cefocused');
             this.classList.add('ceactive');
