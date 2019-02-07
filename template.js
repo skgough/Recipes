@@ -2,7 +2,7 @@ class Editable {
     constructor (element) {
         element.addEventListener( 'blur',this.blurHandler.bind(element) );
         element.addEventListener( 'focus',this.focusHandler.bind(element) );
-        element.addEventListener( 'keydown',this.keydownHandler.bind(element) );
+        element.addEventListener( 'input',this.inputHandler.bind(element) );
         this.element = element;
     }
     focusHandler() {
@@ -19,12 +19,11 @@ class Editable {
             this.edited = false;
         } 
         this.classList.remove('cefocused');
-        this.classList.remove('ceactive');
     }
-    keydownHandler(e) {
-        if ( ! this.edited || this.innerText === '' ) {
+    inputHandler(e) {
+        if ( ! this.edited ) {
             this.classList.remove('cefocused');
-            this.classList.add('ceactive');
+            if ( isAndroid ) triggerKeyboardEvent( this,48 );
             this.innerHTML = '';
             this.edited = true;
         }
@@ -138,3 +137,29 @@ function publish() {
         window.print();
     }
 }
+function triggerKeyboardEvent(el, keyCode){
+    var keyboardEvent = document.createEvent("KeyboardEvent");
+    
+    var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+  
+  
+    keyboardEvent[initMethod](
+                       "keydown",
+                        true,      // bubbles oOooOOo0
+                        true,      // cancelable   
+                        window,    // view
+                        false,     // ctrlKeyArg
+                        false,     // altKeyArg
+                        false,     // shiftKeyArg
+                        false,     // metaKeyArg
+                        keyCode,  
+                        0          // charCode   
+    );
+  
+    el.dispatchEvent(keyboardEvent); 
+}
+function onAndroid() {
+    let regex = RegExp('Android' + 'Chrome/[.0-9]* Mobile');
+    return regex.test(navigator.userAgent)
+}
+var isAndroid = onAndroid();
