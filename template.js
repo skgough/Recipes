@@ -2,7 +2,11 @@ class Editable {
     constructor (element) {
         element.addEventListener( 'blur',this.blurHandler.bind(element) );
         element.addEventListener( 'focus',this.focusHandler.bind(element) );
-        element.addEventListener( 'beforeinput',this.inputHandler.bind(element) );
+        if ( onAndroid() ) {
+            element.addEventListener( 'beforeinput',this.inputHandler.bind(element) );
+        } else {
+            element.addEventListener( 'keydown',this.inputHandler.bind(element) );
+        }
         this.element = element;
     }
     focusHandler() {
@@ -135,4 +139,8 @@ function publish() {
       
         window.print();
     }
+}
+function onAndroid() {
+    let regex = RegExp('Android' + 'Chrome/[.0-9]* Mobile');
+    return regex.test(navigator.userAgent)
 }
