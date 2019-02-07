@@ -20,10 +20,9 @@ class Editable {
         } 
         this.classList.remove('cefocused');
     }
-    inputHandler(e) {
+    inputHandler() {
         if ( ! this.edited ) {
             this.classList.remove('cefocused');
-            if ( isAndroid ) triggerKeyboardEvent( this,48 );
             this.innerHTML = '';
             this.edited = true;
         }
@@ -137,32 +136,3 @@ function publish() {
         window.print();
     }
 }
-<<<<<<< HEAD
-function triggerKeyboardEvent(el, keyCode){
-    var keyboardEvent = document.createEvent("KeyboardEvent");
-    
-    var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
-  
-  
-    keyboardEvent[initMethod](
-                       "keydown",
-                        true,      // bubbles oOooOOo0
-                        true,      // cancelable   
-                        window,    // view
-                        false,     // ctrlKeyArg
-                        false,     // altKeyArg
-                        false,     // shiftKeyArg
-                        false,     // metaKeyArg
-                        keyCode,  
-                        0          // charCode   
-    );
-  
-    el.dispatchEvent(keyboardEvent); 
-}
-function onAndroid() {
-    let regex = RegExp('Android' + 'Chrome/[.0-9]* Mobile');
-    return regex.test(navigator.userAgent)
-}
-var isAndroid = onAndroid();
-=======
->>>>>>> d6e2a50654db9434d6bc6d582ba9215a99235c61
