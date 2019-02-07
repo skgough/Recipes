@@ -1,34 +1,31 @@
 class Editable {
     constructor (element) {
-        element.addEventListener( 'blur',this.blurHandler.bind(element) );
-        element.addEventListener( 'focus',this.focusHandler.bind(element) );
-        if ( onAndroid() ) {
-            element.addEventListener( 'beforeinput',this.inputHandler.bind(element) );
-        } else {
-            element.addEventListener( 'keydown',this.inputHandler.bind(element) );
-        }
+        let wrapper = this;
+        element.addEventListener( 'blur',wrapper.blurHandler.bind(element,wrapper) );
+        element.addEventListener( 'focus',wrapper.focusHandler.bind(element,wrapper) );
+        element.addEventListener( 'beforeinput',wrapper.inputHandler.bind(element,wrapper) );
         this.element = element;
     }
-    focusHandler() {
+    focusHandler(wrapper) {
         if ( ! this.edited ) {
-            this.previous = this.innerHTML;
+            wrapper.previous = this.innerHTML;
             this.classList.add('cefocused');
         }
     }
-    blurHandler() {
+    blurHandler(wrapper) {
         this.innerHTML = this.innerText;
         if ( this.innerText === '' ) {
-            this.innerHTML = this.previous;
+            this.innerHTML = wrapper.previous;
             
-            this.edited = false;
+            wrapper.edited = false;
         } 
         this.classList.remove('cefocused');
     }
-    inputHandler(e) {
-        if ( ! this.edited ) {
+    inputHandler(wrapper) {
+        if ( ! wrapper.edited ) {
             this.classList.remove('cefocused');
             this.innerHTML = '';
-            this.edited = true;
+            wrapper.edited = true;
         }
     }
 };
@@ -139,8 +136,4 @@ function publish() {
       
         window.print();
     }
-}
-function onAndroid() {
-    let regex = RegExp('Android' + 'Chrome/[.0-9]* Mobile');
-    return regex.test(navigator.userAgent)
 }
