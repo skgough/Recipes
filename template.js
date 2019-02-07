@@ -6,32 +6,35 @@ class Editable {
         element.addEventListener( 'beforeinput',wrapper.inputHandler.bind(element,wrapper) );
         this.element = element;
     }
-    focusHandler(wrapper) {
-        if ( ! this.edited ) {
+    focusHandler (wrapper) {
+        if ( ! this.edited && ! isChromeAndroid() ) {
             wrapper.previous = this.innerHTML;
             this.classList.add('cefocused');
+        } else {
+            wrapper.previous = this.innerHTML;
         }
     }
-    blurHandler(wrapper) {
+    blurHandler (wrapper) {
         this.innerHTML = this.innerText;
         if ( this.innerText === '' ) {
             this.innerHTML = wrapper.previous;
-            
             wrapper.edited = false;
         } 
         this.classList.remove('cefocused');
     }
-    inputHandler(wrapper) {
-        if ( ! wrapper.edited ) {
+    inputHandler (wrapper) {
+        if ( ! wrapper.edited && ! isChromeAndroid() ) {
             this.classList.remove('cefocused');
             this.innerHTML = '';
+            wrapper.edited = true;
+        } else {
             wrapper.edited = true;
         }
     }
 };
 class Deletor {
     constructor (element) {
-        element.addEventListener( 'click', function () {
+        element.addEventListener( 'click',function () {
             this.parentNode.remove()
         });
         this.element = element;
@@ -41,11 +44,11 @@ var editables = [];
 var deletors = [];
 
 window.onload = function () {
-    let editableElements = Array.from(document.querySelectorAll('[contenteditable=true]'))
+    let editableElements = document.querySelectorAll('[contenteditable=true]');
     for ( i = 0; i < editableElements.length; i++ ) {
         editables[i] = new Editable(editableElements[i]);
     }
-    let deletorElements = Array.from(document.querySelectorAll('.delete'));
+    let deletorElements = document.querySelectorAll('.delete');
     for ( i = 0; i < deletorElements.length; i++ ) {
         deletors[i] = new Deletor(deletorElements[i])
     }
@@ -65,7 +68,7 @@ window.onload = function () {
     });
     document.querySelector('#addNewIngredient').addEventListener( 'click',addNewIngredient.bind(this) );
     document.querySelector('#addNewStep').addEventListener( 'click',addNewStep.bind(this) );
-    document.querySelector('button.publish').addEventListener( 'click',publish());
+    document.querySelector('button.publish').addEventListener( 'click',publish );
 };
 
 function handleFiles() {
@@ -100,40 +103,43 @@ function addNewStep() {
     editables.push(new Editable(newStep.childNodes[0]));
     deletors.push(new Deletor(newStep.childNodes[2]));
 }
-function publish() {
-    return function() {
-        let image = document.querySelector('img');
-        if ( image === null ) {
-            document.querySelector('#addImage').remove()
-        } else {
-            document.querySelector('#addImage').replaceWith(image)
-        }
-        for ( i = 0; i < editables.length; i++ ) {
-            editables[i].element.removeAttribute('contenteditable');
-            let newNode = editables[i].element.cloneNode(true);
-            editables[i].element.parentNode.replaceChild(newNode,editables[i].element)
-        }
-        for ( i = 0; i < deletors.length; i++ ) {
-            deletors[i].element.remove();
-        }
-        document.querySelector('#addNewStep').remove();
-        document.querySelector('#addNewIngredient').remove();
-        
-        let quants = document.querySelectorAll('.quantity');
-        let width = 0;
-        for ( i = 0; i < quants.length; i++ ) {
-            if ( quants[i].offsetWidth > width ) width = quants[i].offsetWidth;
-        }
-        for ( i = 0; i < quants.length; i++ ) {
-            quants[i].style.width = width + 'px';
-            quants[i].parentElement.style.paddingLeft = width + 5 + 'px';
-            quants[i].parentElement.style.textIndent = -width - 5 + 'px';
-            quants[i].parentElement.innerHTML = quants[i].outerHTML + quants[i].nextElementSibling.innerText;
-        }
-        document.querySelector('button.publish').remove();
-        document.head.querySelector('script').remove();
-        document.head.querySelector('[href="template.css"').remove();
-      
-        window.print();
+var publish = function() {
+    let image = document.querySelector('img');
+    if ( image === null ) {
+        document.querySelector('#addImage').remove()
+    } else {
+        document.querySelector('#addImage').replaceWith(image)
     }
+    for ( i = 0; i < editables.length; i++ ) {
+        editables[i].element.removeAttribute('contenteditable');
+        let newNode = editables[i].element.cloneNode(true);
+        editables[i].element.parentNode.replaceChild(newNode,editables[i].element)
+    }
+    for ( i = 0; i < deletors.length; i++ ) {
+        deletors[i].element.remove();
+    }
+    document.querySelector('#addNewStep').remove();
+    document.querySelector('#addNewIngredient').remove();
+    
+    let quants = document.querySelectorAll('.quantity');
+    let width = 0;
+    for ( i = 0; i < quants.length; i++ ) {
+        if ( quants[i].offsetWidth > width ) width = quants[i].offsetWidth;
+    }
+    for ( i = 0; i < quants.length; i++ ) {
+        quants[i].style.width = width + 'px';
+        quants[i].parentElement.style.paddingLeft = width + 5 + 'px';
+        quants[i].parentElement.style.textIndent = -width - 5 + 'px';
+        quants[i].parentElement.innerHTML = quants[i].outerHTML + quants[i].nextElementSibling.innerText;
+    }
+    document.querySelector('button.publish').remove();
+    document.head.querySelector('script').remove();
+    document.head.querySelector('[href="template.css"').remove();
+    
+    window.print();
 }
+
+var isChromeAndroid = function () {
+    let regex = RegExp('Android' + 'Chrome/[.0-9]* Mobile');
+    return regex.test(navigator.userAgent)
+} 
