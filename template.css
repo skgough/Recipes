@@ -26,20 +26,30 @@ input { display: none }
 ul.ingredients>li>span.quantity {
     padding-right: 4px;
 }
+p {
+    line-height: 30px;
+}
+p > span {
+    line-height: 30px;
+}
 
 ul.ingredients>li {
     padding-left: 0;
     text-indent: 0;
     font-size: 0;
+    height: 30px;
+    margin: 5px 0;
 }
 li > span {
     font-size: 1.15rem;
-    line-height: 20px;
+    line-height: 30px;
+    margin: 5px 0;
     display: inline-block;
     min-width: 15px;
 }
 span[contenteditable=true] {
     min-width: 15px;
+    display: inline-block;
 }
 
 #addImage {
@@ -60,6 +70,41 @@ span[contenteditable=true] {
     margin: 0 auto;
     text-align: center;
     font-size: 30px;
+}
+
+.cefocused {
+    font-size: 0;
+    display: inline-block;
+    border-left: 1px solid black;
+}
+.cefocused + button.delete {
+    cursor: normal;
+    pointer-events: none;
+}
+div.yield > span.cefocused,
+div.time > span.cefocused {
+    line-height: 24px;
+    height: 24px;
+    position: relative;
+    bottom: 4px;
+}
+h1 > span.cefocused {
+    height: 40px;
+    position: relative;
+    bottom: 30px;
+    margin-bottom: -30px;
+}
+
+li > span.cefocused {
+    line-height: 30px;
+    position: relative;
+    bottom: 5px;
+    border-left: 1px solid black;
+}
+p > span.cefocused {
+    position: relative;
+    bottom: 5px;
+    margin-bottom: -5px;
 }
 
 #addImage > button.filePicker {
@@ -179,3 +224,4 @@ button.publish {
         right: calc((100vw - 1000px)/2);
     }
 }
+

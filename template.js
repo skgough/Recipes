@@ -1,35 +1,37 @@
 class Editable {
-    constructor (element,push) {
+    constructor (element) {
         element.addEventListener( 'blur',this.blurHandler.bind(element) );
         element.addEventListener( 'focus',this.focusHandler.bind(element) );
-        element.addEventListener( 'input',this.inputHandler.bind(element) );
+        element.addEventListener( 'keydown',this.keydownHandler.bind(element) );
         this.element = element;
-        if ( push === 'push' ) {
-            editables.push(element);
-        }
     }
     focusHandler() {
         if ( ! this.edited ) {
             this.previous = this.innerHTML;
+            this.classList.add('cefocused');
+        }
+    }
+    blurHandler() {
+        this.innerHTML = this.innerText;
+        if ( this.innerText === '' ) {
+            this.innerHTML = this.previous;
+            
+            this.edited = false;
+        } 
+        this.classList.remove('cefocused');
+        this.classList.remove('ceactive');
+    }
+    keydownHandler(e) {
+        if ( ! this.edited || this.innerText === '' ) {
+            this.classList.remove('cefocused');
+            this.classList.add('ceactive');
             this.innerHTML = '';
             this.edited = true;
         }
     }
-    blurHandler() {
-        this.innerHTML = this.innerText
-        if ( this.innerText === '' ) {
-            this.innerHTML = this.previous;
-            this.edited = false;
-        } else {
-            if ( this.innerHTML !== this.innerText ) this.innerHTML = this.innerText;
-        }
-    }
-    inputHandler() {
-        
-    }
 };
 class Deletor {
-    constructor (element,push) {
+    constructor (element) {
         element.addEventListener( 'click', function () {
             this.parentNode.remove()
         });
