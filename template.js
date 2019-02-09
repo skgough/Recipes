@@ -13,6 +13,12 @@ class Editable {
             if (this.parentElement.querySelector('button.delete') !== null) {
                 this.parentElement.querySelector('button.delete').classList.add('disabled');
             }
+            var range = document.createRange();
+            var sel = window.getSelection();
+            range.setStart(this.childNodes[0], this.childNodes[0].length);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
         }
     }
     blurHandler(wrapper) {

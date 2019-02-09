@@ -50,6 +50,7 @@ li > span {
 span[contenteditable=true] {
     min-width: 15px;
     display: inline-block;
+    cursor: text;
 }
 
 #addImage {
@@ -201,8 +202,17 @@ button.publish {
     bottom: 50px;
     right: 50px;
 }
+* { -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none 
+}
 *:focus {
     outline: 0px solid transparent;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 @media(max-width:550px) {
     #addImage {
