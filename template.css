@@ -163,6 +163,9 @@ button.delete {
     padding: 0;
     height: 20px;
 }
+button.delete.disable {
+    pointer-events: none;
+}
 
 #addImage.added > *,
 #addImage.added > button.filePicker {
