@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, 
+                                    initial-scale=1.0">
+    <meta name="theme-color" content="#8a0f0f">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='fonts.css'>
+    <link rel='stylesheet' href='template.css'>
+    <script src="template.js"></script>
+</head>
+
+<body>
+    <h1><span contenteditable="true">Title</span></h1>
+    <a class='home' href='index.html'>Home</a>
+    <div id='addImage'>
+        <button title='remove image' class='cancel'>&#10005;</button>
+        <button title='add an image' class='filePicker'>&#65291;</button>
+        <div>add image</div>
+        <input type=file accept="image/*">
+    </div>
+    <div class='yield'><span contenteditable="true">Yield</span><button title='delete item' class='delete'>&#10005;</button></div>
+    <div class='time'><span contenteditable="true">Time</span><button title='delete item' class='delete'>&#10005;</button></div>
+    <ul class='ingredients'>
+        <li>
+            <span contenteditable="true" class="quantity">amount</span>
+            <span contenteditable="true">ingredient</span>
+            <button title='delete item' class='delete'>&#10005;</button>
+        </li>
+        <button title='add new ingredient' id="addNewIngredient">&#65291;</button>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="preparation">
+        <p><span contenteditable="true">Do thing 1</span>
+            <button title='delete item' class='delete'>&#10005;</button>
+        </p>
+        <button title='add new step' id="addNewStep">&#65291;</button>
+    </div>
+    <button class='publish'>Print</button>
+</body>
+
+</html>
