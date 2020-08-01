@@ -1,116 +1,144 @@
-html { font-family: serif }
+@import url(reset.css);
+@import url(fonts.css);
+
+html {
+    box-sizing: border-box;
+}
+
 body {
-    width: 90%;
-    max-width: 1000px;
+    padding: 1rem 2rem;
+    line-height: 1.5;
+    max-width: 80ch;
     margin: auto;
-    margin-bottom: 3rem;
-    color: #33334d;
-    background: rgb(255, 234, 217);
+    background: rgb(240,240,240);
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+a:focus, a:hover {
+    outline: none;
+    text-decoration: underline;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin: 1em 0 0.5em;
+    font: 800 2rem sans-serif;
+    margin: 0 0 1rem 0;
+    display: flex;
+    justify-content: space-between
 }
-a.home {
-    position: absolute;
-    top: 50px;
-    right: 40px;
-    font-size: 20px;
+
+h1 span {
+    border-bottom: 5px solid salmon;
+    letter-spacing: -1px;
 }
-img {
-    width: 35%;
-    min-width: 200px;
-    margin: 0 0 15px 15px;
+
+h1 a {
+    font: 600 1rem sans-serif;
+    padding-top: 1rem;
+}
+
+div.flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-flow: row wrap
+}
+
+
+.flex > div:first-child > img {
+    width: 100%;
+    margin: 1rem 1.5rem 2rem 0;
+    max-width: 35ch;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem -1rem #000000bf;
+}
+.ingredients-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ingredients-header button {
+    margin: 0 0 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    border: 0;
+    background: rgb(250,250,250);
+    box-shadow: 0 .5rem .75rem -.5rem #000000bf;
+    cursor: pointer;
+    padding: .5rem;
+    font-weight: 800;
+}
+.ingredients-header button:hover {
     background: white;
-    border-radius: 3px;
-    border: 5px ridge #8a0f0f;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    float: right;
+}
+.ingredients-header button:focus {
+    outline: none;
+    box-shadow: 0 .5rem .75rem -.5rem #000000bf, 0 0 0 2px black;
+}
+.ingredients-header button svg {
+    height: 80%;
 }
 
-div.yield,
-div.time {
-    font-size: 24px;
-    height: 24px;
-    line-height: 24px;
-    margin-bottom: .25rem;
-    font-style: italic;
+.yield,
+.time {
+    font: 800 1.25em/1.5 sans-serif;
+    letter-spacing: -.5px;
 }
 
-ul.ingredients {
-    font-size: 1.15rem;
-    margin: 1rem 0;
+table.ingredients {
+    margin: 2rem 0;
+    max-width: 40ch;
+    border: solid black;
+    border-width: 5px 0 5px 0;
 }
 
-ul.ingredients>li {
-    margin: 0.75rem 0;
-    line-height: 1.15;
+.ingredients tr:first-child td {
+    padding-top: 1ex
 }
 
-ul.ingredients>li>span.quantity {
-    font-weight: bold;
-    color: #8a0f0f;
-    display: inline-block;
+.ingredients tr:last-child td {
+    padding-bottom: 1ex
+}
+
+.ingredients td:first-child {
     text-align: right;
-    padding-right: 4px;
+    white-space: nowrap;
+    font-weight: 800;
+    padding-right: .5ch;
 }
 
-div.preparation {
-    counter-reset: section;
-    list-style-type: none;
+ol.preparation {
+    list-style-type: decimal;
+    padding: 0 1em;
 }
 
-div.preparation>p::before {
-    counter-increment: section;
-    content: counters(section, ".") " ";
-    display: inline-block;
-    position: relative;
-    top: 15px;
-    margin: 0 10px 0 0;
-    color: #8a0f0f;
-    font-weight: bold;
-    font-size: 35px;
-    width: 20px;
-    margin-top: -15px;
-    margin-left: -25px;
-    line-height: 1;
+ol.preparation li {
+    margin: 1em 0
 }
-p {
+
+ul.recipes {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.template {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: .5rem 10%;
+    max-width: 80ch;
+    margin: auto;
+    background: rgba(240,240,240, 0.8)
+}
+
+.template a {
     font-size: 1.25rem;
-    line-height: 1.5;
-    margin: 1.5em 0;
-}
-div.preparation>p {
-    padding-left: 30px;
-    text-indent: -5px;
-}
-
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-@media(max-width:550px) {
-    img {
-        display: none
-    }
-}
-
-@media print {
-    html {
-        font-size: 13px
-    }
-    h1 {
-        margin-top: 5px
-    }
-    body {
-        background: transparent
-    }
-}
-@media(min-width:1100px) {
-    a.home {
-        right: calc((100vw - 1015px)/2);
-    }
+    font-weight: 800;
 }
