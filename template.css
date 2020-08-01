@@ -1,0 +1,75 @@
+@import url(style.css);
+
+h1 {
+    flex-direction: row-reverse;
+}
+
+.flex > button:first-child {
+    font-size: 2em;
+    font-weight: 800;
+    width: 10ch;
+    height: 10ch;
+    margin: 1rem 1.5rem 2rem 0;
+    border-radius: 5ch;
+    background: rgb(250,250,250);
+    box-shadow: 0 .5rem 2rem -.5rem #000000bf;
+    border: 0;
+    cursor: pointer;
+}
+.flex > button:first-child:hover {
+    background: white;
+}
+.flex > button:first-child:focus {
+    outline: none;
+    box-shadow: 0 .5rem 2rem -.5rem #000000bf, 0 0 0 2px black;
+}
+input[type="file"] {
+    display: none;
+}
+[contenteditable="true"] {
+    cursor: pointer;
+    display: inline-block;
+}
+[contenteditable="true"]:focus {
+    cursor: text;
+    outline: none;
+    border-radius: .25em;
+    box-shadow: 0 0 0 .25em rgb(240,240,240), 
+    0 .25em .5em .5em rgba(0,0,0,.25)
+}
+
+.ingredients button.delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.ingredients button.delete svg {
+    height: 1.25em
+}
+.ingredients tr:not(:last-child) td:last-child button {
+    vertical-align: bottom;
+}
+
+.ingredients tr:last-child td {
+    text-align: center;
+    padding: 1rem 0;
+}
+.ingredients tr:last-child button,
+.preparation button {
+    border-radius: 1rem;
+    border: 0;
+    background: rgb(250,250,250);
+    box-shadow: 0 .5rem .75rem -.5rem #000000bf;
+    cursor: pointer;
+    padding: .5rem;
+    font-weight: 800;
+}
+.ingredients tr:last-child button:hover,
+.preparation button:hover {
+    background: white;
+}
+.ingredients tr:last-child button:focus,
+.preparation button:focus {
+    outline: none;
+    box-shadow: 0 .5rem .75rem -.5rem #000000bf, 0 0 0 2px black;
+}
