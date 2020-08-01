@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Chocolate Chip Cookies</title>
+    <title>Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="template.css">
     <script src="template.js" defer></script>
@@ -28,20 +28,23 @@
                         <td><span contenteditable="true">Quantity</span></td>
                         <td><span contenteditable="true">Ingredient</span></td><td><button title="Delete" class='delete' onclick='deleteRow(this)'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <defs/>
-                            <path fill="none" d="M0 0h24v24H0z"/>
                             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                           </svg></button></td>
                     </tr>
-                    <tr><td colspan="2"><button>Add ingredient</button></td></tr>
+                    <tr><td colspan="3"><button>Add ingredient</button></td></tr>
                 </tbody>
             </table>
         </div>
     </div>
     <ol class="preparation">
-        <li><span contenteditable="true">Step one</span></li>
+        <li><span contenteditable="true">Step one</span><button title="Delete" class='delete' onclick='deleteStep(this)'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <defs/>
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg></button>
+        </li>
         <li><button>Add step</button></li>
     </ol>
-    <input type="file" accept="image/*">
+    <input type="file" capture="environment" accept="image/*">
 </body>
 
 </html>
