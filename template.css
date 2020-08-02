@@ -37,7 +37,8 @@ input[type="file"] {
     box-shadow: 0 0 0 .35em rgb(240,240,240), 
     0 .25em .5em .5em rgba(0,0,0,.25)
 }
-ol.preparation {
+ol.preparation,
+table.ingredients {
     vertical-align: top;
 }
 .preparation span+button.delete,
@@ -65,6 +66,7 @@ ol.preparation {
 .preparation span+button.delete:hover svg,
 .ingredients button.delete:hover svg,
 .ingredients button.delete:focus svg {
+    fill: red;
     stroke: red;
 }
 .ingredients tr:not(:last-child) td:last-child button {
@@ -83,6 +85,7 @@ ol.preparation {
     box-shadow: 0 .5rem .75rem -.5rem #000000bf;
     cursor: pointer;
     padding: .5rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 .ingredients tr:last-child button:hover,
@@ -96,8 +99,48 @@ ol.preparation {
 }
 
 .preparation li:not(:last-child) > :first-child {
-    max-width: 94%;
+    max-width: 90%;
 }
 .preparation li:not(:last-child) > :last-child {
     float: right;
+}
+.flex > figure {
+    position: relative;
+}
+
+.flex > figure > button {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    background: rgba(240,240,240,0.75);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    top: 1.5rem;
+    right: 2rem;
+    border: 0;
+    padding: 0;
+}
+.flex > figure > button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px black;
+}
+
+.flex > figure > button > svg {
+    width: 2rem;
+    height: 2rem;
+}
+.flex > figure > button:hover svg,
+.flex > figure > button:focus svg {
+    stroke: red;
+    fill: red;
+}
+
+.flex > figure > img {
+    width: 100%;
+    margin: 1rem 1.5rem 2rem 1.5rem;
+    max-width: 35ch;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem -1rem #000000bf;
 }

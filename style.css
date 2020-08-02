@@ -48,9 +48,9 @@ div.flex {
 }
 
 
-.flex > div:first-child > img {
+.flex > figure > img {
     width: 100%;
-    margin: 1rem 1.5rem 2rem 0;
+    margin: 1rem 1.5rem 2rem 1.5rem;
     max-width: 35ch;
     border-radius: 1rem;
     box-shadow: 0 1.5rem 4rem -1rem #000000bf;
@@ -132,13 +132,13 @@ ul.recipes {
     bottom: 0;
     right: 0;
     left: 0;
-    padding: .5rem 10%;
+    padding: .5rem 2rem 2rem 2rem;
     max-width: 80ch;
     margin: auto;
     background: rgba(240,240,240, 0.8)
 }
 
 .template a {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 800;
 }
