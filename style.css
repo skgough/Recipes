@@ -2,7 +2,7 @@
 @import url(fonts.css);
 
 html {
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     line-height: 1.5;
     max-width: 80ch;
     margin: auto;
-    background: rgb(240,240,240);
+    background: rgb(240, 240, 240);
     color: black;
 }
 
@@ -18,7 +18,9 @@ a {
     text-decoration: none;
     color: royalblue;
 }
-a:focus, a:hover {
+
+a:focus,
+a:hover {
     outline: none;
     text-decoration: underline;
 }
@@ -42,24 +44,34 @@ h1 a {
 
 div.flex {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
+    align-items: start;
+    justify-content: center;
     flex-flow: row wrap
 }
 
+div.flex>figure {
+    flex: 1 1 40ch;
+    text-align: center;
+}
 
-.flex > figure > img {
-    width: 100%;
-    margin: 1rem 1.5rem 2rem 1.5rem;
+div.flex>div {
     max-width: 35ch;
+}
+
+.flex>figure>img {
+    width: 90%;
+    max-width: 35ch;
+    margin: 1rem 0;
     border-radius: 1rem;
     box-shadow: 0 1.5rem 4rem -1rem #000000bf;
 }
+
 .ingredients-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .ingredients-header button {
     margin: 0 0 0 1rem;
     display: flex;
@@ -67,19 +79,22 @@ div.flex {
     height: 2.5rem;
     border-radius: 1.25rem;
     border: 0;
-    background: rgb(250,250,250);
+    background: rgb(250, 250, 250);
     box-shadow: 0 .5rem .75rem -.5rem #000000bf;
     cursor: pointer;
     padding: .5rem;
     font-weight: 800;
 }
+
 .ingredients-header button:hover {
     background: white;
 }
+
 .ingredients-header button:focus {
     outline: none;
     box-shadow: 0 .5rem .75rem -.5rem #000000bf, 0 0 0 2px black;
 }
+
 .ingredients-header button svg {
     height: 80%;
 }
@@ -135,10 +150,135 @@ ul.recipes {
     padding: .5rem 2rem 2rem 2rem;
     max-width: 80ch;
     margin: auto;
-    background: rgba(240,240,240, 0.8)
+    background: rgba(240, 240, 240, 0.8)
 }
 
 .template a {
     font-size: 1.75rem;
     font-weight: 800;
+}
+
+body.overlaid {
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    transition: transform .3s cubic-bezier(0, 0, 0.05, 1.0);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "steps""indicator";
+}
+
+.overlay.underneath {
+    transform: translateY(100%);
+}
+
+.overlay>.ingredients {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    position: fixed;
+    width: 100%;
+    background: white;
+    transform: translateY(-87.5%);
+    transition: transform .3s cubic-bezier(0, 0, 0.05, 1.0);
+}
+.overlay>.ingredients.reveal {
+    transform: translateY(0);
+}
+
+.overlay table.ingredients {
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 2;
+    max-width: unset;
+    border: 0;
+}
+
+button.drop-down {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 3rem;
+    font-weight: 800;
+    background: white;
+    border: 0;
+    cursor: pointer;
+    padding: 0 1em;
+}
+
+button.drop-down:focus {
+    outline: none;
+}
+
+button.drop-down svg {
+    height: 3rem;
+    transform: rotate(180deg);
+    transition: transform .3s cubic-bezier(0, 0, 0.05, 1.0);
+}
+
+.reveal .drop-down svg {
+    transform: rotate(0deg);
+}
+
+.slider {
+    grid-area: steps;
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+    margin: 3rem 1.5em 0 1.5em;
+}
+
+.slider>ol {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    list-style-type: none;
+}
+
+.slider>ol>li {
+    float: left;
+    position: relative;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.indicator {
+    grid-area: indicator;
+    height: 2rem;
+    text-align: center;
+}
+
+.indicator button {
+    height: .75rem;
+    width: .75rem;
+    margin: .625rem .75ex;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.indicator button:focus {
+    outline: none;
+}
+
+.indicator button svg {
+    cursor: pointer;
+    height: 100%;
+    vertical-align: middle;
+    fill: rgba(0, 0, 0, .25)
+}
+
+.indicator button.active svg {
+    fill: black;
 }

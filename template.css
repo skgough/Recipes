@@ -77,6 +77,8 @@ table.ingredients {
     text-align: center;
     padding: 1rem 0;
 }
+button[onclick='toPaper()'],
+button[onclick='publish()'],
 .ingredients tr:last-child button,
 .preparation li:last-child button {
     border-radius: 1rem;
@@ -84,14 +86,18 @@ table.ingredients {
     background: rgb(250,250,250);
     box-shadow: 0 .5rem .75rem -.5rem #000000bf;
     cursor: pointer;
-    padding: .5rem;
+    padding: .5rem 1rem;
     font-size: 1rem;
     font-weight: 800;
 }
+button[onclick='toPaper()']:hover,
+button[onclick='publish()']:hover,
 .ingredients tr:last-child button:hover,
 .preparation li:last-child button:hover {
     background: white;
 }
+button[onclick='toPaper()']:focus,
+button[onclick='publish()']:focus,
 .ingredients tr:last-child button:focus,
 .preparation li:last-child button:focus {
     outline: none;
@@ -112,13 +118,13 @@ table.ingredients {
     width: 3rem;
     height: 3rem;
     position: absolute;
+    top: 2rem;
+    margin: 0 0 0 1rem;
     border-radius: 1.5rem;
     cursor: pointer;
     background: rgba(240,240,240,0.75);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    top: 1.5rem;
-    right: 2rem;
     border: 0;
     padding: 0;
 }
@@ -136,11 +142,14 @@ table.ingredients {
     stroke: red;
     fill: red;
 }
-
-.flex > figure > img {
-    width: 100%;
-    margin: 1rem 1.5rem 2rem 1.5rem;
-    max-width: 35ch;
-    border-radius: 1rem;
-    box-shadow: 0 1.5rem 4rem -1rem #000000bf;
+button[onclick='toPaper()'],
+button[onclick='publish()'] {
+    margin: 2rem .5rem;
+}
+button[onclick='toPaper()'] svg,
+button[onclick='publish()'] svg {
+    display: inline-block;
+    height: 1em;
+    vertical-align: middle;
+    margin-right: 0.5ex;
 }

@@ -130,31 +130,12 @@ const toBase64 = file => new Promise((resolve, reject) => {
     reader.onerror = error => reject(error);
 });
 
-function publish() {
-    let ingredients = document.querySelector('table.ingredients');
-    ingredients.querySelector('tr:last-child').remove();
-    let ingrButtonCells = ingredients.querySelectorAll('td:last-child');
-    ingrButtonCells.forEach(cell => cell.remove());
-
-    
-    let title = document.querySelector('h1');
-    let span = title.querySelector('span');
-        title.innerHTML = `<span>${span.innerText}</span><a href="index.html">Home</a>`;
-    document.title = span.innerText;
-
-    let editables = document.querySelectorAll('[contenteditable="true"]');
-    editables.forEach(span => span.replaceWith(document.createTextNode(span.innerText)));
-
-    
-
-    let preparation = document.querySelector('ol.preparation');
-    preparation.querySelector('li:last-child').remove();
-
-    let buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.remove());
+async function publish() {
+    await removeTemplateFuntionality();
 
     let ingrHeader = document.querySelector('.ingredients-header');
     let stepByStep = document.createElement('button');
+    stepByStep.setAttribute("onclick", "stepMode()");
     stepByStep.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <defs />
                                 <path
@@ -162,7 +143,55 @@ function publish() {
                             </svg>
                             <div>Step-by-step</div>`;
     ingrHeader.appendChild(stepByStep);
-    document.querySelector('input').remove();
-    document.head.querySelector('link').href="style.css";
-    document.head.querySelector('script').src = "script.js"
+    document.head.querySelector('script').src = "script.js";
+}
+
+async function toPaper() {
+    await removeTemplateFuntionality();
+    document.querySelector('h1 > a').remove();
+    setTimeout(function () {
+        waitForPaint();
+    }, 200);
+    function waitForPaint() {
+        if (document.readyState == 'complete') {
+            print();
+        } else {
+            document.onreadystatechange = function () {
+                if (document.readyState === "complete") {
+                    print();
+                }
+            }
+        }
+    }
+}
+
+function removeTemplateFuntionality() {
+    return new Promise((resolve) => {
+        document.querySelector('input').remove();
+        document.head.querySelector('link').href = "style.css";
+
+        let ingredients = document.querySelector('table.ingredients');
+        ingredients.querySelector('tr:last-child').remove();
+        let ingrButtonCells = ingredients.querySelectorAll('td:last-child');
+        ingrButtonCells.forEach(cell => cell.remove());
+
+
+        let title = document.querySelector('h1');
+        let span = title.querySelector('span');
+        title.innerHTML = `<span>${span.innerText}</span><a href="index.html">Home</a>`;
+        document.title = span.innerText;
+
+        let editables = document.querySelectorAll('[contenteditable="true"]');
+        editables.forEach(span => span.replaceWith(document.createTextNode(span.innerText)));
+
+
+
+        let preparation = document.querySelector('ol.preparation');
+        preparation.querySelector('li:last-child').remove();
+
+        let buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.remove());
+
+        resolve(console.log('done'))
+    });
 }
