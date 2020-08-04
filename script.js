@@ -24,20 +24,15 @@ function stepMode() {
             document.querySelectorAll('.indicator button')[index].classList.add('active');
         }
     });
+    window.addEventListener('resize', function () {
+        yOffset = ingredients.offsetHeight - button.offsetHeight;
+        tableMaxHeight = window.offsetHeight - button.offsetHeight - indicator.offsetHeight;
+        ingredients.style = `transform: translateY(-${yOffset}px)`;
+        tableView.style = `max-height: ${tableMaxHeight}px`;
+    });
 }
 
 function reveal() {
     let ingredients = document.querySelector('.overlay .ingredients');
     ingredients.classList.toggle('reveal');
 }
-
-window.addEventListener('resize', function () {
-    let ingredients = document.querySelector('.overlay .ingredients');
-    let button = ingredients.querySelector('button');
-    let yOffset = ingredients.offsetHeight - button.offsetHeight;
-    let indicator = document.querySelector('.indicator');
-    let tableView = document.querySelector('.table-view');
-    let tableMaxHeight = window.offsetHeight - button.offsetHeight - indicator.offsetHeight;
-    ingredients.style = `transform: translateY(-${yOffset}px)`;
-    tableView.style = `max-height: ${tableMaxHeight}px`;
-});
