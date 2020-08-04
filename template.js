@@ -1,3 +1,4 @@
+var template = true
 let editables = document.querySelectorAll('[contenteditable="true"]');
 for (i = 0; i < editables.length; i++) {
     createEditable(editables[i]);
@@ -135,7 +136,7 @@ async function publish() {
 
     let ingrHeader = document.querySelector('.ingredients-header');
     let stepByStep = document.createElement('button');
-    stepByStep.setAttribute("onclick", "stepMode()");
+    stepByStep.setAttribute("onclick", "stepMode(template)");
     stepByStep.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <defs />
                                 <path
@@ -143,7 +144,68 @@ async function publish() {
                             </svg>
                             <div>Step-by-step</div>`;
     ingrHeader.appendChild(stepByStep);
-    document.head.querySelector('script').src = "script.js";
+
+    let overlay = document.createElement('div');
+    overlay.classList.add('overlay', 'underneath');
+
+    let ingredients = document.createElement('div');
+    ingredients.classList.add('ingredients');
+    let tableSrc = document.querySelector('table.ingredients');
+    let tableView = document.createElement('div');
+        tableView.classList.add('table-view');
+    let table = tableSrc.cloneNode(true);
+    tableView.appendChild(table);
+    ingredients.appendChild(tableView);
+    let dropDown = document.createElement('button');
+    dropDown.classList.add('drop-down');
+    dropDown.setAttribute('onclick','reveal()');
+    dropDown.innerHTML = `<span>Ingredients</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+                        </svg>`;
+    ingredients.appendChild(dropDown);
+
+    let slider = document.createElement('div');
+    slider.classList.add('slider');
+    let slides = document.createElement('ol');
+    let lis = document.querySelectorAll('ol.preparation li');
+    for (i=0;i<lis.length;i++) {
+        let li = document.createElement('li');
+        let div = document.createElement('div');
+            div.innerText = lis[i].innerText;
+        li.innerHTML = div.outerHTML;
+        slides.appendChild(li);
+    }
+    slider.appendChild(slides);
+
+    let indicator = document.createElement('div');
+    indicator.classList.add('indicator');
+    let numSteps = slides.querySelectorAll('li').length;
+    for (i = 0; i < numSteps; i++) {
+        let button = document.createElement('button');
+        button.setAttribute('onclick', `steps.slide(${i})`);
+        button.innerHTML = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="50"/>
+                            </svg>`;
+        indicator.appendChild(button);
+    }
+    indicator.querySelectorAll('button')[0].classList.add('active');
+
+    overlay.appendChild(slider);
+    overlay.appendChild(indicator);
+    overlay.appendChild(ingredients);
+
+    document.body.appendChild(overlay);
+
+    let swipe = document.createElement('script');
+        swipe.src= "swipe.min.js";
+    let script = document.createElement('script');
+        script.src= "script.js";
+        script.setAttribute('defer',true);
+    document.head.appendChild(swipe);
+    document.head.appendChild(script);
+    
+    document.head.querySelector('script[src="template.js"]').remove();
 }
 
 async function toPaper() {
@@ -184,14 +246,12 @@ function removeTemplateFuntionality() {
         let editables = document.querySelectorAll('[contenteditable="true"]');
         editables.forEach(span => span.replaceWith(document.createTextNode(span.innerText)));
 
-
-
         let preparation = document.querySelector('ol.preparation');
         preparation.querySelector('li:last-child').remove();
 
         let buttons = document.querySelectorAll('button');
         buttons.forEach(button => button.remove());
 
-        resolve(console.log('done'))
+        resolve();
     });
 }

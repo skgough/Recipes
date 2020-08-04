@@ -168,7 +168,6 @@ body.overlaid {
 
 .overlay {
     position: fixed;
-    overflow: hidden;
     top: 0;
     bottom: 0;
     left: 0;
@@ -190,18 +189,25 @@ body.overlaid {
     position: fixed;
     width: 100%;
     background: white;
-    transform: translateY(-87.5%);
+    overflow-y: hidden;
+    max-height: calc(100vh - 32px);
     transition: transform .3s cubic-bezier(0, 0, 0.05, 1.0);
 }
 .overlay>.ingredients.reveal {
-    transform: translateY(0);
+    transform: translateY(0)!important;
+}
+
+.overlay > .ingredients .table-view {
+    overflow-y: auto;
 }
 
 .overlay table.ingredients {
     margin: 0 auto;
     font-size: 1rem;
     line-height: 2;
-    max-width: unset;
+    max-width: 85%;
+    overflow-y: scroll;
+    margin-bottom: 3rem;
     border: 0;
 }
 
@@ -209,6 +215,8 @@ button.drop-down {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    position: absolute;
+    bottom: 0;
     font-size: 1.25rem;
     line-height: 3rem;
     font-weight: 800;
@@ -216,6 +224,7 @@ button.drop-down {
     border: 0;
     cursor: pointer;
     padding: 0 1em;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button.drop-down:focus {
@@ -237,12 +246,13 @@ button.drop-down svg {
     overflow: hidden;
     visibility: hidden;
     position: relative;
-    margin: 3rem 1.5em 0 1.5em;
+    padding: 3rem 0 0 0;
 }
 
 .slider>ol {
     overflow: hidden;
     position: relative;
+    margin: 0;
     height: 100%;
     padding: 0;
     list-style-type: none;
@@ -252,9 +262,15 @@ button.drop-down svg {
     float: left;
     position: relative;
     font-size: 1.5rem;
+    max-height: 100%;
+    overflow-y: auto;
     line-height: 1.5;
     font-weight: 800;
     letter-spacing: -.5px;
+}
+.slider > ol > li > div {
+    width:80%;
+    margin: 5% 10%;
 }
 
 .indicator {
@@ -286,3 +302,9 @@ button.drop-down svg {
 .indicator button.active svg {
     fill: black;
 }
+<<<<<<< HEAD
+.indicator button:not(.active) svg {
+    transform: scale(.8);
+}
+=======
+>>>>>>> ce2af5e0e4cdb766eb4db5a05b2bd3611a016c6a
