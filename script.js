@@ -1,8 +1,8 @@
 let slider = document.querySelector('.slider');
 var steps;
 
-function stepMode(template) {
-    if (!template) {
+function stepMode() {
+    if () {
         document.body.classList.add('overlaid');
         document.querySelector('.overlay').classList.remove('underneath');
         let ingredients = document.querySelector('.overlay .ingredients');
