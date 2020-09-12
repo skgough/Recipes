@@ -136,7 +136,7 @@ async function publish() {
 
     let ingrHeader = document.querySelector('.ingredients-header');
     let stepByStep = document.createElement('button');
-    stepByStep.setAttribute("onclick", "stepMode(template)");
+    stepByStep.setAttribute("onclick", "toggleSteps()");
     stepByStep.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <defs />
                                 <path
@@ -148,22 +148,17 @@ async function publish() {
     let overlay = document.createElement('div');
     overlay.classList.add('overlay', 'underneath');
 
-    let ingredients = document.createElement('div');
-    ingredients.classList.add('ingredients');
     let tableSrc = document.querySelector('table.ingredients');
-    let tableView = document.createElement('div');
-        tableView.classList.add('table-view');
     let table = tableSrc.cloneNode(true);
-    tableView.appendChild(table);
-    ingredients.appendChild(tableView);
+
     let dropDown = document.createElement('button');
     dropDown.classList.add('drop-down');
-    dropDown.setAttribute('onclick','reveal()');
-    dropDown.innerHTML = `<span>Ingredients</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-                        </svg>`;
-    ingredients.appendChild(dropDown);
+    dropDown.setAttribute('onclick','toggleIngredients()');
+    dropDown.innerHTML = `
+        <span>Ingredients</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>`;
 
     let slider = document.createElement('div');
     slider.classList.add('slider');
@@ -191,9 +186,19 @@ async function publish() {
     }
     indicator.querySelectorAll('button')[0].classList.add('active');
 
+    let exit = document.createElement('button');
+        exit.classList.add('exit-steps');
+    exit.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>`;
+    exit.setAttribute('onclick','toggleSteps()');
+
+    overlay.appendChild(table);
+    overlay.appendChild(dropDown);
     overlay.appendChild(slider);
     overlay.appendChild(indicator);
-    overlay.appendChild(ingredients);
+    overlay.appendChild(exit);
 
     document.body.appendChild(overlay);
 
