@@ -77,8 +77,7 @@ table.ingredients {
     text-align: center;
     padding: 1rem 0;
 }
-button[onclick='toPaper()'],
-button[onclick='publish()'],
+.outputs button,
 .ingredients tr:last-child button,
 .preparation li:last-child button {
     border-radius: 1rem;
@@ -90,14 +89,12 @@ button[onclick='publish()'],
     font-size: 1rem;
     font-weight: 800;
 }
-button[onclick='toPaper()']:hover,
-button[onclick='publish()']:hover,
+.outputs button:hover,
 .ingredients tr:last-child button:hover,
 .preparation li:last-child button:hover {
     background: white;
 }
-button[onclick='toPaper()']:focus,
-button[onclick='publish()']:focus,
+.outputs button:hover,
 .ingredients tr:last-child button:focus,
 .preparation li:last-child button:focus {
     outline: none;
@@ -142,12 +139,10 @@ button[onclick='publish()']:focus,
     stroke: red;
     fill: red;
 }
-button[onclick='toPaper()'],
-button[onclick='publish()'] {
+.outputs button {
     margin: 2rem .5rem;
 }
-button[onclick='toPaper()'] svg,
-button[onclick='publish()'] svg {
+.outputs button svg {
     display: inline-block;
     height: 1em;
     vertical-align: middle;
