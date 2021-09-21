@@ -46,9 +46,11 @@ function showSteps() {
     overlay.appendChild(ingredients)
 
     document.body.appendChild(overlay)
+    window.getComputedStyle(overlay).width
     document.body.classList.add('overlaid')
 }
 function closeStepByStep() {
-    document.querySelector('.overlay').remove()
+    const overlay = document.querySelector('.overlay')
     document.body.classList.remove('overlaid')
+    setTimeout(() => {overlay.remove()}, 200)
 }
