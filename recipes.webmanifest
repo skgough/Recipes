@@ -5,9 +5,9 @@
     "display": "standalone",
     "name": "Recipes",
     "orientation": "portrait",
-    "scope": "/",
+    "scope": "/Recipes/",
     "short_name": "Recipes",
-    "start_url": "/",
+    "start_url": "/Recipes/",
     "theme_color": "salmon",
     "categories": ["utility"],
     "icons": []
