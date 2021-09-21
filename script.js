@@ -39,6 +39,8 @@ function showSteps() {
         step.innerText = src.innerText
         steps.appendChild(step)
     })
+    const filler = document.createElement('div')
+    steps.appendChild(filler)
 
     grabPane.innerHTML =
         `<div class='knob'><div></div></div>

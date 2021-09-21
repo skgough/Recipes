@@ -193,6 +193,7 @@ ul.recipes {
     display: flex;
     flex-grow: 1;
     overflow-x: scroll;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
 }
 .steps div {
@@ -206,13 +207,14 @@ ul.recipes {
     font-weight: 600;
 }
 .overlay > .ingredients {
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     padding-top: 4rem;
     overflow-y: scroll;
+    overflow-x: hidden;
     pointer-events: none;
     scroll-snap-type: y mandatory;
 }
