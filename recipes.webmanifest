@@ -1,0 +1,14 @@
+{
+    "background_color": "white",
+    "description": "My recipes",
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "Recipes",
+    "orientation": "portrait",
+    "scope": "/",
+    "short_name": "Recipes",
+    "start_url": "/",
+    "theme_color": "salmon",
+    "categories": ["utility"],
+    "icons": []
+  }
