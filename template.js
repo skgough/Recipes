@@ -152,27 +152,6 @@ async function saveOfflineCopy() {
                           </svg><span>Print</span>`
     ingrHeader.appendChild(printBtn);
 
-    // let indicator = document.createElement('div');
-    // indicator.classList.add('indicator');
-    // let numSteps = slides.querySelectorAll('li').length;
-    // for (i = 0; i < numSteps; i++) {
-    //     let button = document.createElement('button');
-    //     button.setAttribute('onclick', `steps.slide(${i})`);
-    //     button.innerHTML = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    //                             <circle cx="50" cy="50" r="50"/>
-    //                         </svg>`;
-    //     indicator.appendChild(button);
-    // }
-    // indicator.querySelectorAll('button')[0].classList.add('active');
-
-    // let exit = document.createElement('button');
-    //     exit.classList.add('exit-steps');
-    // exit.innerHTML = `
-    //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    //         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-    //     </svg>`;
-    // exit.setAttribute('onclick','showSteps()');
-
     let script = document.createElement('script');
         script.src= "script.js";
         script.setAttribute('defer',true);
@@ -188,7 +167,7 @@ async function saveOfflineCopy() {
     a.hidden = true;
     document.body.appendChild(a);
     a.innerHTML = "Output";
-    // a.click();
+    a.click();
 }
 
 function removeTemplateFunctionality() {
