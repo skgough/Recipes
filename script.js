@@ -32,8 +32,20 @@ function showSteps() {
         step.innerText = src.innerText
         steps.appendChild(step)
     })
-    const filler = document.createElement('div')
-    steps.appendChild(filler)
+    const doneCard = document.createElement('div')
+    doneCard.classList.add('done')
+    const title = document.createElement('h2')
+    title.innerText = document.title
+    doneCard.append(title)
+    if (document.querySelector('img')) {
+        const resultImg = document.createElement('img')
+        resultImg.src = document.querySelector('img').src
+        doneCard.appendChild(resultImg)
+    }
+    const yield = document.createElement('div')
+    yield.innerText = document.querySelector('.yield').innerText
+    doneCard.appendChild(yield)
+    steps.appendChild(doneCard)
 
     grabPane.innerHTML =
         `<div class='knob'><div></div></div>
