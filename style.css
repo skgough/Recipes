@@ -14,7 +14,7 @@ body {
     color: black;
 }
 
-button {
+* {
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -238,11 +238,11 @@ ul.recipes {
     height: 1rem;
     display: flex;
     justify-content: center;
-    align-items: end;
 }
 .grab.pane .knob div {
     height: .5rem;
     width: 3rem;
+    margin-top: .5rem;
     background: rgb(180,180,180);
     border-radius: .25rem;
 }

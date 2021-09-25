@@ -1,10 +1,3 @@
-   
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-        .register('sw.js')
-        .then(() => { console.log('Service Worker Registered') })
-}
-
 function showSteps() {
     const ingredientSrc = document.querySelector('.ingredients')
     const stepSrc = document.querySelectorAll('.preparation li')
