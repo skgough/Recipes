@@ -294,7 +294,7 @@ ul.recipes {
 @media (pointer:coarse) and (min-width: 800px) {
     .overlay {
         display: grid;
-        grid-template-columns: 1fr 425px; 
+        grid-template-columns: 1fr 375px; 
         grid-template-rows: 4em 1fr;
         grid-template-areas: 
         "header header"
