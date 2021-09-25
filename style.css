@@ -210,7 +210,7 @@ ul.recipes {
     text-align: center;
 }
 .steps .done img {
-    max-width: 90vw;
+    max-width: 90%;
     max-height: 50vh;
     border-radius: 1rem;
     box-shadow: 0 1.5rem 4rem -1rem #000000bf;
@@ -289,6 +289,46 @@ ul.recipes {
 @media (pointer:coarse) {
     button[onclick="print()"] {
         display: none;
+    }
+}
+@media (pointer:coarse) and (min-width: 800px) {
+    .overlay {
+        display: grid;
+        grid-template-columns: 1fr 425px; 
+        grid-template-rows: 4em 1fr;
+        grid-template-areas: 
+        "header header"
+        ". .";
+    }
+    .overlay .header {
+        grid-area: header;
+    }
+    .steps {
+        display: block;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+    }
+    .steps > div {
+        height: 100%;
+        padding: .5rem 1.5rem;
+        min-width: calc(100vw - 425px);
+    }
+    .overlay > .ingredients {
+        position: static;
+        padding-top: 0;
+        pointer-events: all;
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+    .overlay > .ingredients .clear.pane {
+        display: none;
+    }
+    .overlay > .ingredients .knob div {
+        display: none;
+    }
+    .overlay > .ingredients .grab.pane {
+        box-shadow: 0 0 2rem -.5rem #000000bf;
     }
 }
 

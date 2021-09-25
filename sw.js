@@ -2,8 +2,7 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
         caches.open('recipes').then((cache) => cache.addAll([
-            'style.css',
-            'script.js'
+            'reset.css',
         ])),
     );
 });
