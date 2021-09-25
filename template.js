@@ -173,7 +173,7 @@ async function saveOfflineCopy() {
 function removeTemplateFunctionality() {
     return new Promise((resolve) => {
         document.querySelector('input').remove();
-        document.head.querySelector('link').href = "style.css";
+        document.head.querySelector('[rel=stylesheet]').href = "style.css";
 
         let ingredients = document.querySelector('table.ingredients');
         ingredients.querySelector('tr:last-child').remove();
