@@ -116,6 +116,11 @@ table.ingredients {
     border-width: 5px 0 5px 0;
 }
 
+.ingredients th {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-top: .5rem;
+}
 .ingredients tr:first-child td {
     padding-top: 1ex
 }
