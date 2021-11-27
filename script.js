@@ -41,7 +41,12 @@ function showSteps() {
         const resultImg = document.createElement('img')
         resultImg.src = document.querySelector('img').src
         doneCard.appendChild(resultImg)
+        doneCard.innerHTML += '<br>'
     }
+    const homeLink = document.createElement('a')
+    homeLink.innerText = 'Home'
+    homeLink.href = 'index.html'
+    doneCard.appendChild(homeLink)
     steps.appendChild(doneCard)
 
     grabPane.innerHTML =
