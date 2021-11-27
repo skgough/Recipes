@@ -42,9 +42,6 @@ function showSteps() {
         resultImg.src = document.querySelector('img').src
         doneCard.appendChild(resultImg)
     }
-    const yield = document.createElement('div')
-    yield.innerText = document.querySelector('.yield').innerText
-    doneCard.appendChild(yield)
     steps.appendChild(doneCard)
 
     grabPane.innerHTML =
