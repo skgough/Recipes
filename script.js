@@ -34,15 +34,6 @@ function showSteps() {
     })
     const doneCard = document.createElement('div')
     doneCard.classList.add('done')
-    const title = document.createElement('h2')
-    title.innerText = document.title
-    doneCard.append(title)
-    if (document.querySelector('img')) {
-        const resultImg = document.createElement('img')
-        resultImg.src = document.querySelector('img').src
-        doneCard.appendChild(resultImg)
-        doneCard.innerHTML += '<br>'
-    }
     const homeLink = document.createElement('a')
     homeLink.innerText = 'Home'
     homeLink.href = 'index.html'
